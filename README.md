@@ -1,7 +1,7 @@
 # razerMambaSuspend
 A simple Linux program that locks your computer (or executes any given command) when you dock your Razer Mamba mouse (in it's charging base).
 
-![razer-mamba-gallery-02](https://user-images.githubusercontent.com/25673263/34489878-2ecf1a26-efde-11e7-9153-d95760882859.png| width=200)
+![razer-mamba-gallery-02](https://user-images.githubusercontent.com/25673263/34489878-2ecf1a26-efde-11e7-9153-d95760882859.png | width=200)
 
 You cannot really use a modern computer without a mouse, so why not take advantage of the docking action?
 
