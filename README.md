@@ -8,7 +8,7 @@ You cannot really use a modern computer without a mouse, so why not take advanta
 
 ## Requirements
 * A linux computer (tested in Ubuntu 17.10 w/ Gnome 3.26, Wayland display server) with python3 installed.
-* Python dependencies: pydbus ´ sdasd´ 
+* Python dependencies: [pydbus](https://github.com/LEW21/pydbus) `pip3 install pydbus`
 * The [openrazer](https://openrazer.github.io/) driver installed.
 * A Razer Mamba 2015 mouse (will likely work with other rechargeable razer wireless mice such as the Naga Epic Chroma & Ouroboros). Tested with the Razer Mamba 2015 (16 000 dpi).
 
