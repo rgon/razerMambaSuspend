@@ -7,7 +7,8 @@ A simple Linux program that locks your computer (or executes any given command) 
 You cannot really use a modern computer without a mouse, so why not take advantage of the docking action?
 
 ## Requirements
-* A linux computer (tested in Ubuntu 17.10 w/ Gnome 3.26, Wayland display server)
+* A linux computer (tested in Ubuntu 17.10 w/ Gnome 3.26, Wayland display server) with python3 installed.
+* Python dependencies: pydbus ´ sdasd´ 
 * The [openrazer](https://openrazer.github.io/) driver installed.
 * A Razer Mamba 2015 mouse (will likely work with other rechargeable razer wireless mice such as the Naga Epic Chroma & Ouroboros). Tested with the Razer Mamba 2015 (16 000 dpi).
 
@@ -20,11 +21,19 @@ This will most likely work in any linux distro with DBUS support. Change the "on
 4. Finally, just execute the script `./main.py`.
 
 ## Automatically running the script at startup
-To be done.
+To do this, we will be using crontab (available in any major Linux distro).
+
+1. Execute: `sudo crontab -e` and choose your commandline text editor of choice. 
+
+2. Add the following line: `@reboot sh "$HOME/razerMambaSuspend/main.py" > "$HOME/razerMambaSuspend/logs" 2>&1`
+   * If you use nano, write the line, press `Ctrl + X` to exit, enter `Y` and then `Enter` to save the file.
+
+This will run the daemon at startup. A log file will be created in `razerMambaSuspend/logs`.
 
 ## Configuration
 All user-modifiable parameters are stored in the `config.json` file that must be located in the program's root directory.
 The "deviceSerial" variable should be filled with your mouse's serial number.
+
 ```json
 {
     "deviceSerial": "PM1**********26",
@@ -33,8 +42,11 @@ The "deviceSerial" variable should be filled with your mouse's serial number.
     "chargingScanInterval": 1
 }
 ```
+
 If you want to lock your computer when docking your mose, modify the "onChargingCommand" line as follows (only for GNOME-based DEs):
+
 ```json
     "onChargingCommand": "gnome-screensaver-command -l",
 ```
+
 The "chargingScanInterval" decides how often the program will check if the mouse is charging. The default value is 1s.

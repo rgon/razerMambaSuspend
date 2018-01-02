@@ -19,6 +19,8 @@ import subprocess
 import json                                                                    # Config file parsing.
 import os                                                                      # Getting the current directory.
 
+import logging
+
 session_bus = SessionBus()                                                     # get the session bus
 
 maxDBUSsearchPings = 5
@@ -35,6 +37,9 @@ scan = True
 
 programdir = os.path.dirname(os.path.realpath(__file__))
 
+logfile = os.path.join(programdir, "logs")
+logging.basicConfig(filename=logfile, level=logging.DEBUG)
+
 configfile = os.path.join(programdir, "local/config.json")
 
 if(not os.path.isfile(configfile)):                                            # The local/config.json file takes priority, for development purposes.
@@ -43,7 +48,7 @@ if(not os.path.isfile(configfile)):                                            #
 try:
     configfile = json.load(open( configfile ))
 except Exception as e:
-    print("ERROR reading the config.json file: ", e)
+    logging.info("ERROR reading the config.json file: {}".format(e))
     quit()
 
 onChargingCommand = configfile["onChargingCommand"]                            # Action performed on a mouse dock event.
@@ -71,17 +76,17 @@ def connectDBUS(_addr, _interface, _pingNumber):
 
         except Exception as e:
             if(_pingNumber > 1):
-                print("The openrazer daemon doesn't seem to be running. Retrying. Error: ", e)
+                logging.critical("The openrazer daemon doesn't seem to be running. Retrying. Error: {}".format(e))
 
             i+=1
             if(_pingNumber > 1):
                 time.sleep(DBUSsearchSleepTime)
         else:
-            print("Successfully communicated with {}".format(_addr))
+            logging.info("Successfully communicated with {}".format(_addr))
             return module
     
     # DBSU connection failed.
-    print("ERROR: Couldn't connect to {}".format(_addr))
+    logging.critical("ERROR: Couldn't connect to {}".format(_addr))
     return None
 
 def connectRazerDriver(_device):
@@ -90,7 +95,7 @@ def connectRazerDriver(_device):
 def startScanning():
     global scan, chargingScanInterval, onChargingCommand
 
-    print("Scanning each {}s.".format(chargingScanInterval))
+    logging.info("Scanning each {}s.".format(chargingScanInterval))
 
     performed = False
     while(scan):
@@ -112,10 +117,12 @@ def startScanning():
 # Single-threaded FTW.
 
 if(__name__ == "__main__"):
+    logging.info("Starting.")
+
     razerMamba = connectRazerDriver(deviceSerial)
     if(not razerMamba):
         quit()
     
-    print("READY.")
+    logging.info("READY.")
     
     startScanning()
