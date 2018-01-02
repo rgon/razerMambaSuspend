@@ -121,7 +121,7 @@ def startScanning():
 # Single-threaded FTW.
 
 if(__name__ == "__main__"):
-    logging.info("\n Starting @ {}".format(time.ctime()))
+    logging.info("\n Starting @ {} as PID {}".format(time.ctime(), os.getpid()))
 
     razerMamba = connectRazerDriver(deviceSerial)
     if(not razerMamba):
