@@ -4,11 +4,9 @@
 
 # Copyright 2018 Gonzalo Ruiz aka rgon ( github.com/rgon ).
 
-############################################################
-#                                                          #
-#             Imports and configurable params.             #
-#                                                          #
-############################################################
+# ocdcastle
+# Imports and configurable params.
+# !ocdcastle
 
 from pydbus import SessionBus                                                  # sudo pip3 install pydbus
 from gi.repository import GLib
@@ -16,36 +14,32 @@ from gi.repository import GLib
 import time
 import subprocess
 
-import json                                                                    # Config file parsing.
-import os                                                                      # Getting the current directory.
+import json             # Config file parsing.
+import os               # Getting the current directory.
 
 session_bus = SessionBus()                                                     # get the session bus
 
 maxDBUSsearchPings = 5
-DBUSsearchSleepTime = int(3)                                                   # seconds.
+DBUSsearchSleepTime = int(3)                                                            # seconds.
 
-chargingScanInterval = 1                                                       # seconds.
+chargingScanInterval = 1   # seconds.
 scan = True
 
-############################################################
-#                                                          #
-#                      Configuration.                      #
-#                                                          #
-############################################################
+# ocdcastle
+# Configuration.
+# !ocdcastle
 
 configfile = json.load(open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")))
 
-onChargingCommand = configfile["onChargingCommand"]                            # Action performed on a mouse dock event.
+onChargingCommand = configfile["onChargingCommand"]         # Action performed on a mouse dock event.
 deviceSerial = configfile["deviceSerial"]
 
 if(configfile["chargingScanInterval"]):
     chargingScanInterval = int(configfile["chargingScanInterval"])
 
-############################################################
-#                                                          #
-#                    Main functionality.                   #
-#                                                          #
-############################################################
+# ocdcastle
+# Main functionality.
+# !ocdcastle
 
 def connectDBUS(_addr, _interface, _pingNumber):
     global maxDBUSsearchPings, DBUSsearchSleepTime
@@ -92,11 +86,9 @@ def startScanning():
         
         time.sleep(chargingScanInterval)
 
-############################################################
-#                                                          #
-#                      Initialization.                     #
-#                                                          #
-############################################################
+# ocdcastle
+# Initialization.
+# !ocdcastle
 
 # Single-threaded FTW.
 
