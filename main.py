@@ -33,7 +33,18 @@ scan = True
 #                                                          #
 ############################################################
 
-configfile = json.load(open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")))
+programdir = os.path.dirname(os.path.realpath(__file__))
+
+configfile = os.path.join(programdir, "local/config.json")
+
+if(not os.path.isfile(configfile)):                                            # The local/config.json file takes priority, for development purposes.
+    configfile = os.path.join(programdir, "config.json")
+
+try:
+    configfile = json.load(open( configfile ))
+except Exception as e:
+    print("ERROR reading the config.json file: ", e)
+    quit()
 
 onChargingCommand = configfile["onChargingCommand"]                            # Action performed on a mouse dock event.
 deviceSerial = configfile["deviceSerial"]
@@ -58,9 +69,9 @@ def connectDBUS(_addr, _interface, _pingNumber):
         try:
             module = session_bus.get(_addr, _interface)
 
-        except:
+        except Exception as e:
             if(_pingNumber > 1):
-                print("The openrazer daemon doesn't seem to be running. Retrying.")
+                print("The openrazer daemon doesn't seem to be running. Retrying. Error: ", e)
 
             i+=1
             if(_pingNumber > 1):
