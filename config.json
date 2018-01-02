@@ -1,0 +1,10 @@
+{
+    "deviceSerial": "PM1551136700726",
+
+    "onChargingCommand": "gnome-screensaver-command -l",
+    
+    "chargingScanInterval": 1,
+
+    "_comment_": "If you want to put your PC into sleep, set onChargingCommand to: systemctl sleep",
+    "_comment_1": "razerMambaSuspend configuration file. Please fill with your device's unique serial number."
+}
