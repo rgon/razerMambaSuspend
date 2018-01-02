@@ -2,5 +2,5 @@
     "deviceSerial": "PM1**********26",
 
     "onChargingCommand": "gnome-screensaver-command -l",
-    "chargingScanInterval": 1,
+    "chargingScanInterval": 1
 }
