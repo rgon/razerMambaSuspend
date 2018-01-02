@@ -13,7 +13,7 @@ You cannot really use a modern computer without a mouse, so why not take advanta
 This will most likely work in any linux distro with DBUS support. Change the "onChargingCommand" to an appropiate sleep/lock command if your distro doesn't use GNOME or systemd.
 
 ## Usage
-1. Clone/download this program: `http://github.com/rgon/razerMambaSuspend/` and change to it's directory `cd razerMambaSuspend`.
+1. Clone/download this program: `git clone http://github.com/rgon/razerMambaSuspend/` and change to it's directory `cd razerMambaSuspend`.
 2. Let the program know your mouse's Serial Number and [set it](#configuration) in the `config.json` file.
 3. Make the script executable `chmod +x main.py`.
 4. Finally, just execute the script `./main.py`.
