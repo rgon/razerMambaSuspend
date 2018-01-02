@@ -1,6 +1,6 @@
 {
     "deviceSerial": "PM1**********26",
 
-    "onChargingCommand": "gnome-screensaver-command -l",
+    "onChargingCommand": "systemctl sleep",
     "chargingScanInterval": 1
 }
