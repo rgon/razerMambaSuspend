@@ -10,7 +10,7 @@ You cannot really use a modern computer without a mouse, so why not take advanta
 * The [openrazer](https://openrazer.github.io/) driver installed.
 * A Razer Mamba 2015 mouse (will likely work with other rechargeable razer wireless mice such as the Naga Epic Chroma & Ouroboros). Tested with the Razer Mamba 2015 (16 000 dpi).
 
-This will most likely work in any linux distro with DBUS support. Change the "onChargingCommand" to an appropiate sleep/lock command if your distro doesn't use GNOME or systemd.
+This will most likely work in any linux distro with DBUS support. Change the "onChargingCommand" to an appropiate sleep/lock command if your distro doesn't use systemd (or GNOME if locking instead of suspending).
 
 ## Usage
 1. Clone/download this program: `git clone http://github.com/rgon/razerMambaSuspend/` and change to it's directory `cd razerMambaSuspend`.
@@ -28,12 +28,12 @@ The "deviceSerial" variable should be filled with your mouse's serial number.
 {
     "deviceSerial": "PM1**********26",
 
-    "onChargingCommand": "gnome-screensaver-command -l",
+    "onChargingCommand": "systemctl sleep",
     "chargingScanInterval": 1
 }
 ```
-If you want to suspend your computer when locking your mose, modify the "onChargingCommand" line as follows:
+If you want to lock your computer when docking your mose, modify the "onChargingCommand" line as follows (only for GNOME-based DEs):
 ```json
-    "onChargingCommand": "systemctl sleep",
+    "onChargingCommand": "gnome-screensaver-command -l",
 ```
 The "chargingScanInterval" decides how often the program will check if the mouse is charging. The default value is 1s.
