@@ -101,7 +101,11 @@ def startScanning():
     while(scan):
         if(razerMamba.isCharging()):
             if(not performed):
-                subprocess.Popen(onChargingCommand, shell=True)
+                try:
+                    subprocess.Popen(onChargingCommand, shell=True)
+                except Exception as e:
+                    logging.error("ERROR: {}".format(e))
+                
                 performed = True
         else:
             performed = False

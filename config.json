@@ -1,6 +1,6 @@
 {
     "deviceSerial": "PM1**********26",
 
-    "onChargingCommand": "systemctl sleep",
+    "onChargingCommand": "systemctl suspend",
     "chargingScanInterval": 1
 }
