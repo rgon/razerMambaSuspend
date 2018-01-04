@@ -23,9 +23,9 @@ This will most likely work in any linux distro with DBUS support. Change the "on
 ## Automatically running the script at startup
 To do this, we will be using crontab (available in any major Linux distro).
 
-1. Execute: `sudo crontab -e` and choose your commandline text editor of choice. 
+1. Execute: `crontab -e` and choose your commandline text editor of choice. 
 
-2. Add the following line: `@reboot sh "$HOME/razerMambaSuspend/main.py"`
+2. Add the following line: `@reboot pyhton3 "$HOME/razerMambaSuspend/main.py"`
    * If you use nano, write the line, press `Ctrl + X` to exit, enter `Y` and then `Enter` to save the file.
 
 This will run the daemon at startup. A log file will be created in `razerMambaSuspend/logs`.
